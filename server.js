@@ -6,15 +6,19 @@ const data = [
 ];
 
 const server = http.createServer((req, res) => {
-  res.setHeader('Content-type', 'text/plain');
-  res.setHeader('X-Powered-By', 'Node.js');
-  res.write('Hello');
-  const { headers, url, method } = req;
-  res.end();
-  JSON.stringify({
-    success: true,
-    data: todos,
+  res.writeHead(200, {
+    'Content-type': 'application/json',
+    'X-Powered-By': 'Node.js',
   });
+
+  console.log(req.header);
+
+  res.end(
+    JSON.stringify({
+      success: true,
+      data: todos,
+    })
+  );
 });
 
 const PORT = 5000;
