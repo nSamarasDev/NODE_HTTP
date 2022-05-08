@@ -7,19 +7,27 @@ const data = [
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, {
-    'Content-type': 'application/json',
-    'X-Powered-By': 'Node.js',
-  });
+    'Content-Type': 'application/json',
+    'X-Powered-By': 'Node.js'
+})
 
-  console.log(req.header);
+let body = [];
 
-  res.end(
+req
+.on('data', chunk => {
+    body.push(chunk)
+})
+.on('end', () => {
+    body = Buffer.concat(body).toString()
+    console.log(body)
+})
+
+res.end(
     JSON.stringify({
       success: true,
-      data: todos,
+      data: todos  
     })
-  );
-});
+)
 
 const PORT = 5000;
 
