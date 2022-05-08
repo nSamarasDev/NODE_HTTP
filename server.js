@@ -1,7 +1,6 @@
 const http = require('http');
 
 const data = [
-  { id: 1, text: 'Todo One' },
   { id: 2, text: 'Todo Two' },
   { id: 3, text: 'Todo Three' },
 ];
